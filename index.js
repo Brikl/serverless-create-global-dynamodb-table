@@ -26,8 +26,9 @@ const createAndTagTable = async function createAndTagTable(region, tableName, se
   } catch (error) {
     if (error.code === 'ResourceInUseException') {
       cli.consoleLog(`CreateGlobalTable: ${chalk.yellow(`Table ${tableName} already exists in the region ${region}`)}`)
-    }
-    throw error
+    }else{
+      throw error
+    }    
   }
 }
 
@@ -70,9 +71,9 @@ const createGlobalTable = async function createGlobalTable(
   const { ReadCapacityUnits, WriteCapacityUnits } = tableDef.Table.ProvisionedThroughput
   const createTableParams = {
     AttributeDefinitions: tableDef.Table.AttributeDefinitions,
-    KeySchema: tableDef.Table.KeySchema,
-    ProvisionedThroughput: { ReadCapacityUnits, WriteCapacityUnits },
+    KeySchema: tableDef.Table.KeySchema,    
     TableName: tableName,
+    BillingMode: 'PAY_PER_REQUEST',
     StreamSpecification: {
       StreamEnabled: true,
       StreamViewType: 'NEW_AND_OLD_IMAGES',
