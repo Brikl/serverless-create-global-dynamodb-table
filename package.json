@@ -36,7 +36,7 @@
     "mocha": "^5.1.0"
   },
   "dependencies": {
-    "aws-sdk": "^2.224.1",
+    "aws-sdk": "^2.528.0",
     "chalk": "^2.3.2"
   }
 }
